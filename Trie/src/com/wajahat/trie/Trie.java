@@ -1,13 +1,21 @@
 package com.wajahat.trie;
 
+/**
+ * Trie
+ * @author wajahat
+ */
 public class Trie {
 	private TrieNode root;
-	int wordCount = 0;
+	private int size = 0;
 
 	public Trie() {
 		root = new TrieNode();
 	}
 
+	/**
+	 * Insert the given word in Trie
+	 * @param word to be inserted
+	 */
 	public void insert(String word) {
 		TrieNode current = root;
 		int wordLen = word.length();
@@ -21,13 +29,17 @@ public class Trie {
 			current = node;
 		}
 		current.isCompleteWord = true;
-		wordCount++;
+		size++;
 	}
 
+	/**
+	 * Delete the given word from Trie
+	 * @param word to be deleted
+	 */
 	public void delete(String word) {
 		delete(root, word, 0);
-		if (!searchWord(word)) {
-			wordCount--;
+		if (!contains(word)) {
+			size--;
 		}
 	}
 
@@ -55,6 +67,11 @@ public class Trie {
 		return false;
 	}
 
+	/**
+	 * Search for the given prefix in Trie
+	 * @param prefix - the prefix to be searched
+	 * @return - true if the prefix is found, false otherwise
+	 */
 	public boolean searchPrefix(String prefix) {
 		TrieNode current = root;
 		int prefixLen = prefix.length();
@@ -70,7 +87,12 @@ public class Trie {
 		return found;
 	}
 
-	public boolean searchWord(String word) {
+	/**
+	 * Check if the given word is present in Trie
+	 * @param word - the word to be searched
+	 * @return true of the word is contained in Trie, false otherwise.
+	 */
+	public boolean contains(String word) {
 		TrieNode current = root;
 		int wordLen = word.length();
 		for (int i = 0; i < wordLen; i++) {
@@ -83,7 +105,24 @@ public class Trie {
 		return current.isCompleteWord;		
 	}
 
-	public int getWordCount() {
-		return wordCount;
+	/**
+	 * @return the current size of Trie
+	 */
+	public int size() {
+		return size;
+	}
+	
+	/**
+	 * @return true if the Trie is empty, false otherwise.
+	 */
+	public boolean isEmpty() { return size == 0; }
+	
+	/**
+	 * String representation of Trie
+	 */
+	@Override
+	public String toString() {
+		if (isEmpty()) return "";
+		return "[root node] "+ root.toString();
 	}
 }

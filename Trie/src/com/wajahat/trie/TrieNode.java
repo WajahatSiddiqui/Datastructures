@@ -11,4 +11,9 @@ public class TrieNode {
 		children = new HashMap<Character, TrieNode>();
 		isCompleteWord = false;
 	}
+
+	@Override
+	public String toString() {
+		return children.toString();
+	}
 }

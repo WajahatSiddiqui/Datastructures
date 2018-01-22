@@ -19,22 +19,34 @@ public class TrieTest {
 
 	@Test
 	public void testInsert() {
-		assertEquals(trie.getWordCount(), 5);
+		trie.insert("opq");
+		assertTrue(trie.contains("opq"));
+		assertEquals(6, trie.size());
+		System.out.println("testInsert : " + trie);
 	}
 	
 	@Test
 	public void testDelete() {
 		trie.delete("lmn");
-		assertEquals(trie.getWordCount(), 4);
+		assertFalse(trie.contains("lmn"));
+		assertEquals(4, trie.size());
+		System.out.println("testDelete : " + trie);		
 	}
 	
 	@Test
-	public void testSearchWord() {
-		assertTrue(trie.searchWord("abc"));
+	public void testContains() {
+		assertTrue(trie.contains("abc"));
+		assertTrue(!trie.contains("zwe"));
 	}
 	
 	@Test
 	public void testSearchPrefix() {
 		assertTrue(trie.searchPrefix("cd"));
+		assertTrue(!trie.searchPrefix("il"));
+	}
+	
+	@Test
+	public void testToString() {
+		System.out.println("testToString : " + trie);
 	}
 }

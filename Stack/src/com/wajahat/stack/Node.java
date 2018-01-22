@@ -1,7 +1,7 @@
-package com.wajahat.list;
-
+package com.wajahat.stack;
 
 public class Node<Key> {
+
 	Key key;
 	Node<Key> next;
 	
